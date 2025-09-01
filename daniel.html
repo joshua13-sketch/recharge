@@ -1,0 +1,236 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        h1 {
+            margin-left: 200px;
+            width: 30%;
+            text-align: center;
+        }
+
+        #network {
+            width: 300px;
+            height: 30px;
+        }
+
+        #amount {
+            width: 300px;
+            height: 30px;
+        }
+
+        #rcode {
+            width: 300px;
+            height: 30px;
+        }
+
+        button {
+            background-color: blue;
+            height: 35px;
+            padding: 10px;
+            color: white;
+            border: none;
+            border-radius: 10px;
+        }
+
+        #redd {
+            background-color: red;
+            margin-left: 15px;
+            margin-top: 10px;
+        }
+
+        #repin {
+            height: 30px;
+            width: 300px;
+            margin-bottom: 20px;
+        }
+
+        #cardTable {
+            margin-bottom: -200px;
+        }
+    </style>
+    </head>
+
+    <body>
+        <h1>Recharge card</h1>
+        <div style="display: flex; flex-direction: row; gap: 200px;">
+            <div>
+                <h2>Network</h2>
+                <input list="Network" id="network" placeholder="Select Network">
+                <datalist id="Network">
+                    <option value="MTN">
+                    <option value="Airtel">
+                    <option value="Glo">
+                    <option value="9mobile">
+                </datalist>
+
+
+                <h2>Amount</h2>
+                <input list="Amount" id="amount" placeholder="Select Amount">
+                <datalist id="Amount">
+                    <option value="100">
+                    <option value="200">
+                    <option value="500">
+                    <option value="1000">
+                </datalist>
+
+                <h2>Recharge code</h2>
+                <input type="text" id="rcode">
+                <div style="margin-top: 20px;">
+                    <button id="genbtn">Generate</button>
+                    <button id="savebtn">Save</button>
+                </div>
+            </div>
+
+            <div class="rpin">
+                <h2>Pin</h2>
+                <input type="text" id="repin"><br>
+                <button id="load">Recharge</button>
+            </div>
+
+        </div>
+
+        <table cellpadding="20">
+            <thead>
+                <tr>
+                    <th>S/N</th>
+                    <th>Network</th>
+                    <th>Amount</th>
+                    <th>PIN</th>
+                    <th>Recharge Code</th>
+                    <th>Status</th>
+                    <th>Date Created</th>
+                    <th>Date Used</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="cardTable">
+
+            </tbody>
+        </table>
+
+        <script>
+            let network = document.getElementById('network');
+            let amount = document.getElementById('amount');
+            let pin = document.getElementById('rcode');
+            let rowDisplay = document.getElementById('cardTable');
+            let pinInp = document.getElementById('repin');
+
+            let myArray = []
+
+            function generateDigit() {
+                pin.value = Math.floor(Math.random() * 100000000000)
+            }
+            genbtn.addEventListener('click', generateDigit)
+
+            function saveCard() {
+                let networkSelector = {
+                    "MTN": "*555*",
+                    "Airtel": "*126*",
+                    "Glo": "*126*",
+                    "9mobile": "*312*"
+                }
+                myArray.push({
+                    // Serial: serial,
+                    Network: network.value,
+                    Amount: amount.value,
+                    Pin: pin.value,
+                    recode: `${networkSelector[network.value]}${pin.value}#`,
+                    status: "Not used",
+                    Date: new Date().toLocaleDateString(),
+                    Dateused: "Not yet used",
+                    Action: "Delete"
+                })
+                // console.log(myArray);
+                displayCard();
+                clearAll();
+            }
+            savebtn.addEventListener('click', saveCard)
+
+            function displayCard() {
+                rowDisplay.innerHTML = ""
+                myArray.forEach((value, index) => {
+                    let row = document.createElement("tr");
+
+
+                    let serialtd = document.createElement('td');
+                    serialtd.innerHTML = `${index + 1}`
+                    row.appendChild(serialtd)
+
+                    let networktd = document.createElement('td');
+                    networktd.innerHTML = `${value.Network}`
+                    row.appendChild(networktd);
+
+                    let amounttd = document.createElement('td');
+                    amounttd.innerHTML = `${value.Amount}`
+                    row.appendChild(amounttd);
+
+                    let pintd = document.createElement('td');
+                    pintd.innerHTML = `${value.Pin}`
+                    row.appendChild(pintd);
+
+                    let recodetd = document.createElement('td');
+                    recodetd.innerHTML = `${value.recode}`
+                    row.appendChild(recodetd);
+
+                    let statustd = document.createElement('td');
+                    statustd.innerHTML = `${value.status}`
+                    row.appendChild(statustd);
+
+                    let datetd = document.createElement('td');
+                    datetd.innerHTML = `${value.Date}`
+                    row.appendChild(datetd);
+
+                    let dateusedtd = document.createElement('td');
+                    dateusedtd.innerHTML = `${value.Dateused}`
+                    row.appendChild(dateusedtd);
+
+                    let actiontd = document.createElement('button');
+                    actiontd.innerHTML = `${value.Action}`
+                    actiontd.setAttribute('onclick', `deleteRow(${index})`)
+                    actiontd.setAttribute('id', 'redd')
+
+                    row.appendChild(actiontd);
+                    rowDisplay.appendChild(row);
+                });
+            }
+            function deleteRow(index) {
+                myArray.splice(index, 1)
+                displayCard()
+            }
+            function loadCard() {
+                let codePin = pinInp.value;
+                let getCard = myArray.find((num) => num.recode === codePin);
+                // console.log(getCard);
+
+                if (getCard) {
+                    alert("Recharge Successful");
+                    getCard.status = "Used";
+                    getCard.Dateused = new Date().toLocaleDateString();
+                    displayCard();
+                }
+                else {
+                    alert("Invalid Code")
+                }
+                pinInp.value = ""
+
+
+            }
+            function clearAll() {
+                network.value = ""
+                amount.value = ""
+                pin.value = ""
+            }
+            load.addEventListener('click', loadCard)
+        </script>
+
+    </body>
+
+</html>

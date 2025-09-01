@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <script>
+    //Higher order function
+    //for each
+    //map
+    //filter
+    //find
+    let studentDetails = [
+        {
+            name: "sola",
+            age: 12,
+            gender: "male",
+        },
+
+          {
+            name: "ola",
+            age: 20,
+            gender: "male",
+        },
+
+          {
+            name: "grace",
+            age: 10,
+            gender: "female",
+        },
+
+          {
+            name: "ayo",
+            age: 8,
+            gender: "female",
+        }
+        
+    ];
+    //find
+    studentDetails.find(student =>{
+        return student.gender == "female"
+    })
+
+    console.log(findStudent);
+    
+
+    //filter method
+
+    // studentDetails.filter(student => {
+    //     return student.age > 10
+    // })
+
+    // let filteredStudentBasedOnAge = studentDetails.filter((student, index, array) => {
+    //     return student.age > 10
+    // })
+
+    // console.log(filteredStudentBasedOnAge);
+    
+
+    //   let result = studentDetails.map((student, index, array) => {
+    //     return student.name;
+        
+    //  });
+    //  console.log(result);
+
+    //    let result = studentDetails.forEach((student, index, array) => {
+    //     return student.name;
+        
+    //  });
+    //  console.log(result);
+     
+
+    //  studentDetails.forEach((student, index, array) => {
+    //     console.log(student.name);
+        
+    //  });
+
+   </script> 
+</body>
+</html>

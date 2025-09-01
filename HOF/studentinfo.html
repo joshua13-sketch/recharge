@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin: 0%;
+        padding: 0%;
+        box-sizing: border-box;
+    }
+     body {
+      /* font-family: Arial, sans-serif; */
+      /* display: flex; */
+      /* width: 80%; */
+      /* margin: 80px auto; */
+      /* gap: 20px; */
+      /* justify-content: space-between; */
+      /* justify-content: center; */
+      /* align-items: center; */
+      /* height: 40vh; */
+      background: #f4f4f4;
+    }
+
+    
+    h1{
+        font-size: 35px;
+        width: 40%;
+        margin: auto;
+        /* border: thin solid black; */
+        /* text-align: center; */
+        font-family: Arial, Helvetica, sans-serif;
+        
+    }
+    #name{
+        width: 540px;
+        margin: 10px 455px;
+        /* border: thin solid red; */
+        height: 40px;
+        border: 3px solid black;
+        border-radius: 5px;
+        font-size: 17px;
+        padding: 10px;
+        /* margin: 0px 500px; */
+        /* margin: auto; */
+        /* text-align: center; */
+    }
+      #phone{
+        width: 540px;
+        margin: 10px 455px;
+        /* border: thin solid red; */
+        height: 40px;
+        border: 3px solid black;
+        border-radius: 5px;
+        font-size: 17px;
+        padding: 10px;
+      }
+       #search{
+        width: 540px;
+        margin: 10px 455px;
+        /* border: thin solid red; */
+        height: 40px;
+        border: 3px solid black;
+        border-radius: 5px;
+        font-size: 17px;
+        padding: 10px;
+      }
+    p{
+        width: 40%;
+        font-family: Arial, Helvetica, sans-serif;
+        /* border: thin solid black; */
+        font-size: 16px;
+        margin: 10px auto;
+        /* margin: 10px 490px; */
+    }
+    #add{
+        width: 540px;
+        padding: 10px;
+        background-color: rgb(214, 209, 209);
+        border: 3px solid black;
+        margin: 20px 455px;
+        font-weight: bold;
+        cursor: pointer;
+        font-size: 16px;
+    }
+    table { 
+    width:48%; 
+    border-collapse:collapse; 
+    margin-top:14px; 
+    margin: 10px 300px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 500;
+    border: none;
+}
+    th, td { 
+        /* border:1px solid #ddd;  */
+        padding:8px; 
+        text-align:center; 
+      
+    }
+    th { 
+      background:#fafafa; 
+    }
+</style>
+<body>
+    <h1>STUDENT INFORMATION TABLE</h1>
+     <div>
+    <p>Name:</p>
+    <!-- <label for="">Name:</label> -->
+    <input type="text" id="name">
+    </div>
+     <div>
+    <p>Phone Number:</p>
+    <!-- <label for="">Name:</label> -->
+    <input type="text" id="phone">
+    </div>
+    <button id="add">Add</button>
+    <div>
+    <p>Search:</p>
+    <!-- <label for="">Name:</label> -->
+    <input type="text" id="search">
+    </div>
+     <table id="cardTable">
+      <thead>
+        <tr>
+          <th>S/N</th>
+          <th>Name</th>
+          <th>Phone Number</th>
+          <th>Delete</th>
+          
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+</body>
+</html>

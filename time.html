@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SETINTERVAL AND SETTIMEOUT</title>
+</head>
+<!-- 
+<button onclick="startInterval();">start</button>
+<button onclick="stopTimeout();">stop</button> -->
+
+<span id="hr"></span>:
+<span id="min"></span>:
+<span id="sec"></span>
+
+<input type="text" id="theAlarmInput">
+ <button onclick="alarmCount();">alarm</button>
+ <!-- <p id="theDisplayP"></p> -->
+<body>
+    <script>
+
+        let hrs = document.getElementById("hr");
+        let minutes = document.getElementById("min");
+        let seconds = document.getElementById("sec");
+
+        function anything() {
+            let date = new Date();
+            hrs.innerHTML = date.getHours();
+            minutes.innerHTML = date.getMinutes();
+            seconds.innerHTML = date.getSeconds();
+        }
+        setInterval(anything, 1000);
+
+        //setInterval
+        //1000ms = 1s
+
+        // let interval;
+        // function greet() {
+        //     interval = setInterval(() => {
+        //         console.log("Hello class")
+        //     }, 1000)
+        // }
+
+        // function startInterval() {
+        //     greet();
+        // }
+
+        // function stopTimeout() {
+        //     clearTimeout(interval)
+        // }
+
+        function alarmCount() {
+            let alarmNumber = document.getElementById('theAlarmInput');
+             let settings = setInterval(countDown, 1000);
+           
+            function countDown() {
+                alarmNumber.value --;
+
+                 if (alarmNumber.value <= 0) {
+                clearInterval(settings);
+                
+            }
+              
+
+            }
+            
+         
+        }
+
+    
+
+    </script>
+</body>
+</html>
